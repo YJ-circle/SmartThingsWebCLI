@@ -8,7 +8,7 @@ placeholderOption.text = "Select a speaker to receive the message";
 placeholderOption.disabled = true;
 placeholderOption.selected = true;
 
-async function initializeDeviceList() {
+aasync function initializeDeviceList() {
     try {
         const response = await fetch("https://api.smartthings.com/v1/devices?capability=audioNotification", {
             method: "GET",
@@ -24,15 +24,16 @@ async function initializeDeviceList() {
         const data = await response.json();
         devicesMap = {};
 
-
+        
         const selectElements = document.querySelectorAll('select');
         selectElements.forEach(select => {
             select.innerHTML = '';
             select.add(placeholderOption);
             data.items.forEach(item => {
-                devicesMap[item.name] = item.deviceId;
+            const displayName = (item.label && item.label.trim()) ? item.label : item.name;
+                devicesMap[displayName] = item.deviceId;
                 const option = document.createElement('option');
-                option.text = item.name;
+                option.text = displayName;
                 option.value = item.deviceId;
                 select.add(option);
             });
