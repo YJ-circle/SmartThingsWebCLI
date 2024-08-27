@@ -87,11 +87,10 @@ function addDefaultOptions(selectElement) {
 async function sendMsg() {
     const devices = [];
     const sendText = document.getElementById('message');
-    document.getElementById("result").textContent = `요청시간: ${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}`;
+    document.getElementById("result").textContent = `Request Time: ${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}`;
     for (let i = 1; i <= deviceCount; i++) {
         const selectElement = document.getElementById(`deviceList${i}`);
         if (selectElement) {
-            console.log('YJ_TEST: ', selectElement.value);
             devices.push({
                 id: selectElement.id,
                 value: selectElement.value
@@ -117,7 +116,7 @@ async function sendMsg() {
             
             const responseData = await response.json();
             if (response) {
-                document.getElementById("result").textContent += `\n\n${i} 번째 TTS요청 결과: ` + JSON.stringify(responseData, null, 2);
+                document.getElementById("result").textContent += `\n\nRequest${i} Result: ` + JSON.stringify(responseData, null, 2);
             }
             
         }
