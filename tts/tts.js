@@ -10,7 +10,7 @@ placeholderOption.selected = true;
 
 aasync function initializeDeviceList() {
     try {
-        const response = await fetch("https://api.smartthings.com/v1/devices?capability=audioNotification", {
+        const response = await fetch("https://api.smartthings.com/v1/devices?capability=audioNotification&capability=speechSynthesis", {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + patToken
